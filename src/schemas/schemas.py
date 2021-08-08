@@ -23,6 +23,14 @@ class Product(BaseModel):
   class Config:
     orm_mode = True
 
+class ProductResponse(BaseModel):
+  name: str
+  details: str
+  price: float
+
+  class Config:
+    orm_mode = True
+
 class Request(BaseModel):
   id: Optional[str] = None
   user: User

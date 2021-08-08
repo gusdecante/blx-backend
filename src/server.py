@@ -1,21 +1,21 @@
 from fastapi import FastAPI, Depends, status
+from typing import List
 from sqlalchemy.orm import Session
 from src.schemas import schemas
 from src.infra.sqlalchemy.repository.product import RepositoryProduct
+from src.schemas import schemas
 from src.infra.sqlalchemy.repository.user import RepositoryUser
 from src.infra.sqlalchemy.config import database
-
-database.create_db()
 
 app = FastAPI()
 
 # Depends injeção de dependência
-@app.post('/products', status_code=status.HTTP_201_CREATED)
+@app.post('/products', status_code=status.HTTP_201_CREATED, response_model=schemas.ProductResponse)
 def create_products(product: schemas.Product, database: Session = Depends(database.get_db)):
   created_product = RepositoryProduct(database).create(product)
   return created_product
 
-@app.get('/products', status_code=status.HTTP_200_OK)
+@app.get('/products', status_code=status.HTTP_200_OK, response_model=List[schemas.Product])
 def list_products(database: Session = Depends(database.get_db)):
   products = RepositoryProduct(database).index()
   return products

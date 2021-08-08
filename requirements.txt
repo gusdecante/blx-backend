@@ -5,3 +5,6 @@ typing
 # orm
 sqlalchemy
 fastapi
+
+# migrations 
+alembic
