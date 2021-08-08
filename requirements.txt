@@ -1,2 +1,7 @@
+# data validation
 pydantic
 typing
+
+# orm
+sqlalchemy
+fastapi

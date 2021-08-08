@@ -15,7 +15,7 @@ uninstall_packages:
 	pip freeze|xargs pip uninstall -y
 
 run_server:
-	uvicorn src.main:app --reload
+	uvicorn src.server:app --reload
 
 run_tests:
 	pytest
