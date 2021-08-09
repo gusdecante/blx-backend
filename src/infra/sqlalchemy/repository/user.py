@@ -7,7 +7,7 @@ class RepositoryUser():
     self.database = database
 
   def create(self, user: schemas.User):
-    db_user = models.User(name= user.name, phone=user.phone)
+    db_user = models.User(name= user.name, password=user.password, phone=user.phone)
 
     self.database.add(db_user)
     self.database.commit()
