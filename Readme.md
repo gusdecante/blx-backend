@@ -2,7 +2,7 @@
   <br>
   BLX - Backend
   <br>
-  <h3>A expansão é buscar o ínicio das coisas!</h3>
+  <h3>Expansão é buscar o ínicio das circunstâncias!</h3>
 </h1>
 
 ## 💻 Sobre o BLX
