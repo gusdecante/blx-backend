@@ -17,3 +17,9 @@ class RepositoryUser():
   def index(self):
     users = self.database.query(models.User).all()
     return users
+
+  def get(self):
+    pass
+
+  def remove(self):
+    pass
