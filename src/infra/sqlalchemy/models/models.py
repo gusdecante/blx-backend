@@ -10,6 +10,7 @@ class Product(Base):
   details = Column(String)
   price = Column(Float)
   available = Column(Boolean)
+  sizes = Column(String)
 
 class User(Base):
 
@@ -17,4 +18,5 @@ class User(Base):
 
   id = Column(Integer, primary_key=True, index=True)
   name = Column(String)
+  password = Column(String)
   phone = Column(String)

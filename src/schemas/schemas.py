@@ -4,6 +4,7 @@ from typing import Optional, List
 class User(BaseModel):
   id: Optional[str] = None
   name: str
+  password: str
   phone: str
   # myProducts: List[Product]
   # mySales: List[Request]
