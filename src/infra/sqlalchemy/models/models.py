@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, Float, Boolean, String, ForeignKey
 from sqlalchemy.orm import relationship
 from src.infra.sqlalchemy.config.database import Base
+
 class User(Base):
 
   __tablename__ = 'user'
@@ -11,6 +12,7 @@ class User(Base):
   phone = Column(String)
   
   products = relationship('Product', back_populates='user')
+  
 class Product(Base):
 
   __tablename__ = 'product'
