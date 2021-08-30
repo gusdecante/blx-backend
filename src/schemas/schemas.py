@@ -24,7 +24,7 @@ class User(BaseModel):
   class Config:
     orm_mode = True
 
-class UserRequest(BaseModel):
+class UserReponse(BaseModel):
   id: Optional[int] = None
   name: str
   phone: str
@@ -40,18 +40,26 @@ class Product(BaseModel):
   price: float
   available: bool = False
   user_id: Optional[int]
-  user: Optional[UserRequest]
+  user: Optional[UserReponse]
 
   class Config:
     orm_mode = True
 
 
 
-class Request(BaseModel):
+class Deal(BaseModel):
   id: Optional[int] = None
-  user: User
-  product: Product
-  quantity: int
-  delivery: bool = True
-  address: str
-  observations: Optional[str] = "Sem observações"
+  qtt: int
+  delivery_place: Optional[str]
+  delivery_type: str
+  comments: Optional[str] = "Sem observações"
+  
+  user_id: Optional[int]
+  product_id: Optional[int]
+
+  user: Optional[UserReponse]
+  product: Optional[ProductResponse]
+
+  class Config:
+      orm_mode = True
+

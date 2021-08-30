@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 
@@ -18,6 +18,13 @@ def create_products(product: schemas.Product, database: Session = Depends(databa
 def list_products(database: Session = Depends(database.get_db)):
   products = RepositoryProduct(database).index()
   return products
+
+@router.get('/products/{id}')
+def get_product(id: int, database: Session = Depends(database.get_db)):
+  product_found = RepositoryProduct(database).get_by_id(id)
+  if not product_found:
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Item not found with the id = {id}")
+  return product_found
 
 @router.put('/products/{id}', response_model=schemas.ProductResponse)
 def update_products(id: int, product: schemas.Product, database: Session = Depends(database.get_db)):

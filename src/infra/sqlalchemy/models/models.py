@@ -12,6 +12,7 @@ class User(Base):
   phone = Column(String)
   
   products = relationship('Product', back_populates='user')
+  deals = relationship('Deal', back_populates='user')
   
 class Product(Base):
 
@@ -26,3 +27,18 @@ class Product(Base):
   user_id = Column(Integer, ForeignKey('user.id', name='fk_user'))
   
   user = relationship('User', back_populates='products')
+
+class Deal(Base):
+  __tablename__ = 'deal'
+
+  id = Column(Integer, primary_key=True, index=True)
+  qtt = Column(Integer)
+  delivery_place = Column(String)
+  delivery_type = Column(String)
+  comments = Column(String)
+  
+  user_id = Column(Integer, ForeignKey('user.id', name='fk_deal_user'))
+  product_id = Column(Integer, ForeignKey('product.id', name='fk_deal_product'))
+
+  user = relationship('User', back_populates='deals')
+  product = relationship('Product')

@@ -1,6 +1,5 @@
-from sqlalchemy import update, delete
+from sqlalchemy import update, delete, select
 from sqlalchemy.orm import Session
-from sqlalchemy.sql.expression import false
 from src.schemas import schemas
 from src.infra.sqlalchemy.models import models
 
@@ -21,6 +20,11 @@ class RepositoryProduct():
     products = self.database.query(models.Product).all()
     return products
 
+  def get_by_id(self, id: int):
+    query = select(models.Product).where(models.Product.id == id)
+    product = self.database.execute(query).first()
+    return product
+
   def update(self, id: int, product: schemas.Product):
     update_stmt = update(models.Product).where(models.Product.id == id).values(name=product.name,
     details=product.details, price=product.price, available=product.available)
@@ -31,3 +35,4 @@ class RepositoryProduct():
     delete_stmt = delete(models.Product).where(models.Product.id == id)
     self.database.execute(delete_stmt)
     self.database.commit()
+    
