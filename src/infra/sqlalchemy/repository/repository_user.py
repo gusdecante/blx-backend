@@ -1,3 +1,4 @@
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 from src.schemas import schemas
 from src.infra.sqlalchemy.models import models
@@ -18,8 +19,6 @@ class RepositoryUser():
     users = self.database.query(models.User).all()
     return users
 
-  def get(self):
-    pass
-
-  def remove(self):
-    pass
+  def get_by_phone(self, phone):
+    query = select(models.User).where(models.User.phone == phone)
+    return self.database.execute(query).first()

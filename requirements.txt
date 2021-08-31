@@ -10,3 +10,7 @@ sqlalchemy
 
 # migrations 
 alembic
+
+# security
+python-jose[cryptography]
+passlib[bcrypt]
