@@ -1,6 +1,7 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from src.routers import routers_products, routers_auth, routers_deals
+from src.jobs.write_notification import write_notification
 
 app = FastAPI()
 
@@ -20,6 +21,12 @@ app.add_middleware(
 app.include_router(routers_products.router)
 app.include_router(routers_auth.router, prefix="/auth")
 app.include_router(routers_deals.router)
+
+@app.post('/send_email/{email}')
+def send_email(email: str, background: BackgroundTasks):
+  background.add_task(write_notification, email, 'How was your day?')
+
+  return {"Message": "Message sent"}
 
 @app.middleware('http')
 async def process_request_time(request: Request, next):
