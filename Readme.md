@@ -9,7 +9,7 @@
 
 Projeto criado na aula de desenvolvimento backend com python do professor Rogério Silva do IFPI, a ideia é ter uma espécie de OLX onde os moradores de um bairro e de uma comunidade vendem seus produtos.
 
-## 🧪 Stacks - Front-End
+## 🧪 Links
 
 - [FastAPI](http://fastapitutorial.com/)
 - [sqlalchemy](https://docs.sqlalchemy.org)
